@@ -1,18 +1,42 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <h1 class="text-5xl text-center mb-4">Home</h1>
+    <PokemonsListComponent :pokemons="pokemons" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+import { defineComponent, reactive } from 'vue'
+import PokemonsListComponent from '@/components/pokemons/PokemonsListComponent.vue'
+import { PokemonInterface } from '@/models/pokemons/PokemonInterface'
 
 export default defineComponent({
   name: 'Home',
   components: {
-    HelloWorld
+    PokemonsListComponent
+  },
+  setup () {
+    const pokemons: PokemonInterface[] = reactive([
+      {
+        id: 1,
+        name: 'Bulbasaur',
+        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
+      },
+      {
+        id: 2,
+        name: 'ivysaur',
+        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png'
+      },
+      {
+        id: 3,
+        name: 'venusaur',
+        image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png'
+      }
+    ])
+
+    return {
+      pokemons
+    }
   }
 })
 </script>

@@ -5,8 +5,9 @@
     <Loader v-if="loading" :show="loading" />
     <div v-else class="grid gap-5 md:gap-10  grid-cols-1 md:grid-cols-3">
       <PokemonComponent
-        v-for="pokemon in pokemons"
-        :key="pokemon.id"
+        v-for="(pokemon, i) in pokemons"
+        :key="i"
+        :index="i"
         :model="pokemon"
         @selectPokemon="onPokemonSelect" />
     </div>

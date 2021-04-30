@@ -3,18 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "cross-env VUE_APP_API_CLIENT=mock vue-cli-service serve",
+    "serve:live": "cross-env VUE_APP_API_CLIENT=live vue-cli-service serve",
+    "build": "cross-env VUE_APP_API_CLIENT=live vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
+    "@types/sinon": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
@@ -37,6 +41,7 @@
     "postcss": "^7",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "sinon": "^10.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "~4.1.5",
     "vue-jest": "^5.0.0-0"

@@ -1,6 +1,7 @@
 import { createStore, createLogger } from 'vuex'
 import { PokemonInterface } from '@/models/pokemons/PokemonInterface'
 import { PokemonsStateInterface } from '@/models/store/PokemonsStateInterface'
+import apiClient from '@/api-client'
 
 const state: PokemonsStateInterface = {
   loading: false,
@@ -33,25 +34,12 @@ export default createStore({
     loadPokemons ({ commit }) {
       commit('loadingPokemons')
 
-      const mockPokemons: PokemonInterface[] = [
-        {
-          id: 1,
-          name: 'Bulbasaur',
-          image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
-        },
-        {
-          id: 2,
-          name: 'ivysaur',
-          image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png'
-        },
-        {
-          id: 3,
-          name: 'venusaur',
-          image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png'
-        }
-      ]
       setTimeout(() => {
-        commit('loadedPokemons', mockPokemons)
+        apiClient
+          .pokemons
+          .fetchPokemons().then((data: PokemonInterface[]) => {
+            commit('loadedPokemons', data)
+          })
       }, 1000)
     },
     selectPokemon ({ commit }, pokemon: {
